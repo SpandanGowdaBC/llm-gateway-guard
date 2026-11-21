@@ -9,7 +9,7 @@ A Spring Boot gateway that sits in front of LLM APIs to:
 **Status:** Work in progress, built in public. Daily progress is posted on LinkedIn.
 
 ## Stack
-Java 21, Spring Boot 3, JWT, Kafka, ClickHouse, Docker Compose
+Java 21, Spring Boot 4, JWT, Kafka, ClickHouse, Docker Compose
 
 ## Roadmap
 - [ ] Week 1: Foundation
