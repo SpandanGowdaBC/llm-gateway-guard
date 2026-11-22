@@ -16,6 +16,3 @@ Java 21, Spring Boot 4, JWT, Kafka, ClickHouse, Docker Compose
 - [ ] Week 2: Guardrails
 - [ ] Week 3: Event pipeline
 - [ ] Week 4: Dashboard and polish
-
-## Note
-Built with AI assistance as a learning project. Each part is reviewed and explained before moving on.
