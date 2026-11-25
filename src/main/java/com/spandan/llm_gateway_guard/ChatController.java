@@ -12,14 +12,13 @@ public class ChatController {
 
     private final ChatService chatService; // CORE
 
-    public ChatController(ChatService chatService) { // CORE: constructor injection
+    public ChatController(ChatService chatService) {
         this.chatService = chatService;
     }
 
     @PostMapping("/chat") // CORE
-    public ChatResponse chat(@Valid @RequestBody ChatRequest request) { // CORE
-        String reply = chatService.chat(request.message()); // CORE
-        String tenantId = TenantContext.getTenantId(); // CORE: read from Day 1 context
-        return new ChatResponse(reply, tenantId); // CORE
+    public ChatResponse chat(@Valid @RequestBody ChatRequest request) {
+        // CORE: delegate to ChatService which redacts and invokes the LLM
+        return chatService.chat(request.message());
     }
 }
