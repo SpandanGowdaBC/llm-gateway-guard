@@ -20,12 +20,18 @@ public class GlobalExceptionHandler {
                 .map(FieldError::getDefaultMessage)
                 .findFirst()
                 .orElse("Validation failed");
-        return Map.of("error", "BAD_REQUEST", "message", message); // CORE
+        return Map.of("error", "BAD_REQUEST", "message", message);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleReadableException(HttpMessageNotReadableException ex) {
         return Map.of("error", "BAD_REQUEST", "message", "Required request body is missing or malformed");
+    }
+
+    @ExceptionHandler(PromptInjectionException.class) // CORE: catches blocked injection attacks
+    @ResponseStatus(HttpStatus.FORBIDDEN) // CORE: HTTP 403
+    public Map<String, String> handlePromptInjection(PromptInjectionException ex) {
+        return Map.of("error", "FORBIDDEN", "message", ex.getMessage());
     }
 }
