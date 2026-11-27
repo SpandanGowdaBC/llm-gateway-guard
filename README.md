@@ -45,3 +45,10 @@ Regex matching is linear-time and ReDoS-safe, but has trade-offs:
   - **Encoded Payloads**: Base64 or rot13 encoded prompts (`SWdub3Jl...`) are not decoded prior to scanning.
 - **False Positives (False Alarms)**:
   - AI security research prompts discussing jailbreaks like "DAN" or quoting `### system` headers may be flagged or blocked.
+
+## Usage & Cost Tracking: Token Estimation (Day 5)
+- **TokenEstimator**: Calculates an instant, zero-memory token estimate using `ceil(characters / 4.0)` (at least 1 for non-empty text, 0 for null/empty).
+
+### Honest Limitations: Token Estimation
+- **Heuristic Estimate**: 4 characters per token is a general English approximation; actual tokenizer models (e.g. tiktoken, cl100k_base) produce different counts depending on vocabulary, code, or non-English characters.
+- **In-Memory Only**: Early tracking is in-memory and lost upon restart (persistent event streaming via Kafka to ClickHouse planned for Week 3).
